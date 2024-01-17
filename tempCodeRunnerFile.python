@@ -1,17 +1,15 @@
-# Escopo da classe e de métodos da classe
+# __dict__ e vars para atributos de instância
+# mantém os valores que podem ser escritos em um objeto
 
-class Animal:
-    # nome = 'Leão' ---> (fora da classe) print(Animal.nome)
-    def __init__(self,nome):
+class Pessoa:
+    ano_atual = 2022
+
+    def __init__(self, nome, idade):
         self.nome = nome
+        self.idade = idade
     
-    def comendo(self, alimento):
-        return f'{self.nome} está comendo {alimento}'
-    
-    def executar(self, *args, **kwargs):
-        return self.comendo(*args, **kwargs)
+    def get_ano_nascimento(self):
+        return Pessoa.ano_atual - self.idade
 
-
-leao = Animal(nome='Leão')
-print(leao.nome)
-print(leao.executar('carne'))
+p1 = Pessoa('João', 35)
+print(p1.__dict__)
