@@ -9,7 +9,7 @@
 # o ciclo de vida de outro objeto.
 
 class Escritor: 
-    def __init__(self, nome) -> None:
+    def __init__(self, nome):
         self.nome = nome
         self._ferramenta = None
 
@@ -24,8 +24,12 @@ class Escritor:
 
 
 class FerramentaDeEscrever:
-    def __init__(self,nome) -> None:
+    def __init__(self, nome):
         self.nome = nome
+
+    @property
+    def ferramenta(self):
+        return self.nome
 
     def escrever(self):
         return f'{self.nome} está escrevendo...'
@@ -38,7 +42,7 @@ maquina_de_escrever = FerramentaDeEscrever('Maquina de escrever')
 escritor.ferramenta = caneta
 print(caneta.escrever())
 print(escritor.ferramenta.escrever())
-print(escritor.ferramenta.ferramenta)
+# print(escritor.ferramenta.ferramenta) # retorna o nome da ferramenta
 
 print()
 
