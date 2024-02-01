@@ -1,48 +1,22 @@
-# abstractmethod para qualquer método já decorado (@property e setter)
-# É possível criar @property @property.setter @classmethod
-# @staticmethod e métodos normais como abstratos, para isso
-# use @abstractmethod como decorator mais interno.
-# Foo - Bar são palavras usadas como placeholder
-# para palavras que podem mudar na programação.
+# Implementando o protocolo do Iterator em Python
+# Essa é apenas uma aula para introduzir os protocolos de collections.abc no
+# Python. Qualquer outro protocolo poderá ser implementando seguindo a mesma
+# estrutura usada nessa aula.
+# https://docs.python.org/3/library/collections.abc.html
 
+from collections.abc import Iterable
 
-from abc import ABC, abstractmethod
-
-class AbstractFoo(ABC):
-    def __init__(self, name):
-        self._name = None
-        self.name = name
+class MyList(Iterable):
+    def __init__(self):
+        self._data = {}
+        self._index = 0
     
-    @property
-    # @abstractmethod
-    def name(self): 
-        return self._name 
-    
-    @name.setter
-    @abstractmethod
-    def name(self, name): ...
+    def append(self, value):
+        self._data[self._index] = value
+        self._index += 1
 
-
-class Foo(AbstractFoo):
-    # name = ''
-
-    def __init__(self, name):
-        super().__init__(name)
-        # print('Sou inútil')
-    
-    # @property
-    # def name(self): 
-    #     return self._name 
-
-    # @name.setter
-    # def name(self, name):
-    #     self._name = name
-    
-    @AbstractFoo.name.setter
-    def name(self, name):
-        self._name = name
-
-
-    
-foo = Foo('Bar')
-print(foo.name)
+if __name__=='__main__':
+    lista = MyList()
+    lista.append('Maria')
+    lista.append('João')
+    print(lista._data)
